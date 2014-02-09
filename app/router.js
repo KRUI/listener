@@ -1,6 +1,7 @@
 define([
+    'backbone',
     'views/View'
-	], function(View) {
+	], function(Backbone, View) {
 
 	var Router = Backbone.Router.extend({
 
@@ -15,5 +16,5 @@ define([
 
 	});
 
-	new Router();
+	return Router;
 });
