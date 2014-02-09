@@ -3,11 +3,50 @@
 <head>
   <link href="app/styles/style.css" rel="stylesheet" type="text/css">
   <script data-main="app/main", src="components/requirejs/require.js"></script>
+
+    <style type="text/css" media="screen">
+      .startStop {
+        width: 100px;
+        height: 100px;
+      }
+      .playerStopped {
+        background-color: red;
+      }
+      .playerStarted {
+        background-color: green;
+      }
+      .startStopLoading {
+        background-color: orange;
+      }
+    </style>
 </head>
 <body>
-  <div class="container">
+  <div class="outer-container">
   	<div class="content">
   	</div>
-  </div>
+  	<div class="container">
+      <h1>89.7 FM</h1>
+      <div id="studioNative">
+      </div>
+    </div>
+    <div class="container">
+      <h1>The Lab</h1>
+      <div id="studioFlash">
+      </div>
+    </div>
+
+    <script src="JAweSomePlayer/js/player.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+      var pl;
+      function init() {
+        studioNative = jsPlayer.create("http://krui.student-services.uiowa.edu:8000/listen", 
+            {elementId: "studioNative", mimeType: "audio/mpeg", useNative: true});
+        studioFlash = jsPlayer.create("http://krui.student-services.uiowa.edu:8200/listen",
+            {elementId: "studioFlash", mimeType: "audio/mpeg", useNative: true});
+      };
+      if (window.addEventListener) {
+        window.addEventListener('load', init, false);
+      }
+    </script>
 </body>
 </html>
