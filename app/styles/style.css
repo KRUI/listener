@@ -1,0 +1,16 @@
+body {
+background-repeat:no-repeat;
+background-size:contain;
+background-position:center;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-weight: 300;
+	color: #ffffff;
+}
+
+.content {
+	background-color: rgba(0,0,0,0.5);
+	border-radius: 12px;
+}
