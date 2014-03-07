@@ -46,7 +46,8 @@ define(['backbone', 'underscore', 'text!templates/view.html'], function(Backbone
         var imageUrl = "http://developer.echonest.com/api/v4/artist/images?" +
           "api_key=" + "UOWZEQZDWKY7GO4CO" + "&format=jsonp" +
           "&results=10" + "&start=0" + "&license=unknown" + 
-          "&name=" + artist.split(' ').join('+');
+          "&name=" + artist.split(' ').join('+'),
+          that = this;
 
         $.ajax({
           type: 'GET',
@@ -55,8 +56,8 @@ define(['backbone', 'underscore', 'text!templates/view.html'], function(Backbone
           dataType: 'jsonp',
           jsonpCallback: 'success',
           contentType: 'application/json',
-          success: function(json) {
-            console.log(json);
+          success: function(obj) {
+            $('body').css('background-image', 'url(' + obj["response"]["images"][0]["url"] + ')');
           },
 
           error: function(xhr, status, err) {
