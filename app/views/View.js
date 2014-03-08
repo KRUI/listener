@@ -26,8 +26,8 @@ define(['backbone', 'underscore', 'text!templates/view.html'], function(Backbone
               artist = results.song.artist,
               track = results.song.name;
 
-            that.$('h1')
-              .text(dj + " is playing some filthy jams");
+            that.$('p#dj')
+              .text(dj);
             that.$('h2')
               .text(artist + " - " + track);
 
