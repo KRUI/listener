@@ -26,7 +26,7 @@ define(['backbone', 'underscore', 'text!templates/view.html'], function(Backbone
               artist = results.song.artist,
               track = results.song.name;
 
-            that.$('p#dj')
+            that.$('h1.current.dj')
               .text(dj);
             that.$('h2')
               .text(artist + " - " + track);
@@ -57,7 +57,8 @@ define(['backbone', 'underscore', 'text!templates/view.html'], function(Backbone
           jsonpCallback: 'success',
           contentType: 'application/json',
           success: function(obj) {
-            $('body').css('background-image', 'url(' + obj["response"]["images"][0]["url"] + ')');
+            var images = obj["response"]["images"];
+            $('body').css('background-image', 'url(' + images[Math.floor(Math.random() * images.length)]["url"] + ')');
           },
 
           error: function(xhr, status, err) {
