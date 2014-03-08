@@ -8,6 +8,13 @@ define(['backbone', 'underscore', 'text!templates/view.html'], function(Backbone
  
       render: function(data) {
         this.$el.html(this.template(data));
+        var runCount = 0;    
+        function timerMethod() {
+          runCount++;
+          if(runCount > 3) clearInterval(timerId);
+        }
+
+        var timerId = setInterval(timerMethod, 60000);
         this.loadCurrentSong();
         this.loadPlays();
       },
