@@ -9,8 +9,29 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 .content {
-	background-color: rgba(0,0,0,0.5);
-	border-radius: 12px;
+	background-color: rgba(0,0,0,0.3);
+	border-radius: 3px;
+	margin: 30px;
+	padding: 10px;
+}
+
+.content h1 {
+	display: inline-block;
+}
+
+h1.glyphicon-headphones {
+	color: #FF3333;
+	margin-left: 20px;
+	margin-right: 5px;
+}
+
+h1.current.dj { 
+	color: #FFFF00;
+	border-bottom: 1px dotted #ffff00;
+}
+
+h1.current.action {
+	padding-left: 10px;
 }
 
 .glyphicon {
@@ -32,3 +53,4 @@ h1, h2, h3, h4, h5, h6, p {
 	height: 100%;
 	vertical-align: middle;
 }
+ 
