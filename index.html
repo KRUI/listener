@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="app/styles/style.css" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+  <script data-main="app/main", src="components/requirejs/require.js"></script>
+</head>
+<body>
+  <div class="outer-container">
+  	<div class="content">
+  	</div>
+  	<div class="container">
+      <div class="glyphicon" style="font-size: 120px; color: #eeeeee" id="studioNative">
+      </div>
+    </div>
+
+    <script src="JAweSomePlayer/js/player.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+      var pl;
+      function init() {
+        var lab_url = "http://krui.student-services.uiowa.edu:8200/listen",
+        studioNative = jsPlayer.create("http://krui.student-services.uiowa.edu:8000/listen", 
+            {elementId: "studioNative", mimeType: "audio/mpeg", useNative: true});
+      };
+      window.addEventListener('load', init, false);
+    </script>
+</body>
+</html>

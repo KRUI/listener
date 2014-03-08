@@ -1,0 +1,11 @@
+{
+  "name": "krui-listener",
+  "version": "0.1",
+  "dependencies": {
+    "requirejs": "latest",
+    "jquery": "latest",
+    "underscore": "latest",
+    "backbone": "latest",
+    "requirejs-text": "latest"
+  }
+}
