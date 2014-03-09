@@ -8,27 +8,38 @@ define(['backbone', 'underscore', 'text!templates/view.html'], function(Backbone
  
       render: function(data) {
         this.$el.html(this.template(data));
-        var runCount = 0, maxRunCount = 1440, that = this; // Keeps refreshing for a max of 1 day 
+        var runCount = 0, 
+          maxRunCount = 1440, // Keeps refreshing for a max of 1 day 
+          that = this;
+
         function refresh() {
           runCount++;
           that.loadCurrentSong();
-          if(runCount > maxRunCount) clearInterval(timerId);
+          if(runCount > maxRunCount) {
+            clearInterval(timerId);
+          }
         }
-        var timerId = setInterval(refresh, 60000); // run every 30 sec.
+        var timerId = setInterval(refresh, 60000); // run every 60 sec.
         refresh(); // Also run right now
       },
 
       loadCurrentSong: function() {
-        console.log("Loading current song");
         var latestUrl = "http://staff.krui.fm/api/playlist/main/latest.json",
           that = this;
 
         $.ajax({
-
           url: latestUrl,
-
           success: function(results) {
-            var dj = results.user.firstname + results.user.lastname,
+            var latestSongTime = Date.parse(results.song.time),
+              now = new Date().getTime(),
+              latestSongMinutesSinceNow = ((now - latestSongTime) / 60000);
+              console.log(latestSongMinutesSinceNow);
+
+            if (latestSongMinutesSinceNow > 12) {
+              that.handleInactiveDJ();
+              return;
+            }
+            var dj = results.user.firstname + " " + results.user.lastname,
               artist = results.song.artist,
               track = results.song.name;
 
@@ -36,7 +47,6 @@ define(['backbone', 'underscore', 'text!templates/view.html'], function(Backbone
               .text(dj);
             that.$('h2')
               .text(artist + " - " + track);
-
             that.loadArtistImage(artist);
           },
 
@@ -45,6 +55,14 @@ define(['backbone', 'underscore', 'text!templates/view.html'], function(Backbone
           }
 
         });
+      },
+
+      handleInactiveDJ: function() {
+        this.$('h1.current.dj, .glyphicon-headphones')
+          .hide();
+        this.$('h2.current.song')
+          .text("Iowa City's Sound Alternative");
+        this.setJapanBackground();
       },
 
       loadArtistImage: function(artist) {
@@ -64,11 +82,26 @@ define(['backbone', 'underscore', 'text!templates/view.html'], function(Backbone
           contentType: 'application/json',
 
           success: function(obj) {
-            var images = obj["response"]["images"],
-              randomImage = images[Math.floor(Math.random() * images.length)];
-            $('body').css('background-image', 'url(' + randomImage["url"] + ')');
+            if (obj.response.status.message !== "Success") {
+              console.log(obj);
+              return;
+            }
+            var images = obj.response.images;
+            if (images.length > 0) {
+              var randomImage = images[Math.floor(Math.random() * images.length)];
+              $('body')
+                .css('background-image', 'url(' + randomImage["url"] + ')');
+            } else {
+              that.setJapanBackground();
+            }
           }
         });
+      },
+
+      setJapanBackground: function() {
+        var japan = "http://krui.fm/wordpress/wp-content/themes/krui/images/bg_japan.jpg";
+        $('body')
+          .css('background-image', 'url(' + japan + ')')
       },
 
       loadPlays: function() {
