@@ -52,6 +52,10 @@ table {
 
 body {
 	background-size: 100%;
+
+	&.japan {
+		background-size: 150%;
+	}
 }
 
 h1, h2, h3, h4, h5, h6, p {
@@ -114,4 +118,11 @@ h1.current.dj {
 	text-align: center;
 	height: 100%;
 	vertical-align: middle;
+}
+
+@media (max-width: 600px) {
+
+	body.japan {
+		background-size: 250%;
+	}
 }

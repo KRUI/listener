@@ -33,14 +33,14 @@ define(['backbone', 'underscore', 'text!templates/view.html'], function(Backbone
             var latestSongTime = Date.parse(results.song.time),
               now = new Date().getTime(),
               latestSongMinutesSinceNow = ((now - latestSongTime) / 60000);
-              console.log(latestSongMinutesSinceNow);
 
             if (latestSongMinutesSinceNow > 12) {
               that.handleInactiveDJ();
               return;
             }
+
             var dj = results.user.firstname + " " + results.user.lastname,
-              artist = results.song.artist,
+              artist = results.song.artist, 
               track = results.song.name;
 
             that.$('h1.current.dj')
@@ -48,12 +48,7 @@ define(['backbone', 'underscore', 'text!templates/view.html'], function(Backbone
             that.$('h2')
               .text(artist + " - " + track);
             that.loadArtistImage(artist);
-          },
-
-          error: function(xhr,status, err) {
-            console.log(err);
           }
-
         });
       },
 
@@ -102,6 +97,7 @@ define(['backbone', 'underscore', 'text!templates/view.html'], function(Backbone
         var japan = "http://krui.fm/wordpress/wp-content/themes/krui/images/bg_japan.jpg";
         $('body')
           .css('background-image', 'url(' + japan + ')')
+          .addClass('japan');
       },
 
       loadPlays: function() {
