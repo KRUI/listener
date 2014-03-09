@@ -8,19 +8,18 @@ define(['backbone', 'underscore', 'text!templates/view.html'], function(Backbone
  
       render: function(data) {
         this.$el.html(this.template(data));
-        var runCount = 0;    
-        function timerMethod() {
+        var runCount = 0, maxRunCount = 1440, that = this; // Keeps refreshing for a max of 1 day 
+        function refresh() {
           runCount++;
-          if(runCount > 3) clearInterval(timerId);
+          that.loadCurrentSong();
+          if(runCount > maxRunCount) clearInterval(timerId);
         }
-
-        var timerId = setInterval(timerMethod, 60000);
-        this.loadCurrentSong();
-        this.loadPlays();
+        var timerId = setInterval(refresh, 60000); // run every 30 sec.
+        refresh(); // Also run right now
       },
 
       loadCurrentSong: function() {
-
+        console.log("Loading current song");
         var latestUrl = "http://staff.krui.fm/api/playlist/main/latest.json",
           that = this;
 
@@ -63,36 +62,24 @@ define(['backbone', 'underscore', 'text!templates/view.html'], function(Backbone
           dataType: 'jsonp',
           jsonpCallback: 'success',
           contentType: 'application/json',
+
           success: function(obj) {
-            var images = obj["response"]["images"];
-            $('body').css('background-image', 'url(' + images[Math.floor(Math.random() * images.length)]["url"] + ')');
-          },
-
-          error: function(xhr, status, err) {
-            console.log(err);
+            var images = obj["response"]["images"],
+              randomImage = images[Math.floor(Math.random() * images.length)];
+            $('body').css('background-image', 'url(' + randomImage["url"] + ')');
           }
-
         });
       },
 
       loadPlays: function() {
         var playsUrl = "http://staff.krui.fm/api/playlist/main/items.json?limit=50";
-
         $.ajax({
-
           url: playsUrl,
-
           success: function(results) {
             console.log(results);
           },
-
-          error: function(xhr, status, err) {
-            console.log(err);
-          }
-
         });
       },
-
     });
 
     return View;
