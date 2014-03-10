@@ -24,12 +24,14 @@ define(['backbone', 'underscore', 'text!templates/view.html'], function(Backbone
       },
 
       loadCurrentSong: function() {
+        console.log("loading current song");
         var latestUrl = "http://staff.krui.fm/api/playlist/main/latest.json",
           that = this;
 
         $.ajax({
           url: latestUrl,
           success: function(results) {
+            console.log(results);
             var latestSongTime = Date.parse(results.song.time),
               now = new Date().getTime(),
               latestSongMinutesSinceNow = ((now - latestSongTime) / 60000);
@@ -51,6 +53,9 @@ define(['backbone', 'underscore', 'text!templates/view.html'], function(Backbone
               .text(artist + " - " + track);
 
             that.loadArtistImage(artist);
+          },
+          error: function(xhr, status, error) {
+            console.log(error);
           }
         });
       },
@@ -89,6 +94,7 @@ define(['backbone', 'underscore', 'text!templates/view.html'], function(Backbone
               var randomImage = images[Math.floor(Math.random() * images.length)];
               $('body, .blur')
                 .css('background-image', 'url(' + randomImage["url"] + ')'); 
+              that.calculateBlurPosition();
             } else {
               that.setJapanBackground();
             }
@@ -100,7 +106,14 @@ define(['backbone', 'underscore', 'text!templates/view.html'], function(Backbone
         var japan = "http://krui.fm/wordpress/wp-content/themes/krui/images/bg_japan.jpg";
         $('body, .blur')
           .css('background-image', 'url(' + japan + ')')
-          .addClass('japan');
+          .css('background-size', '150%');
+        this.calculateBlurPosition();
+      },
+
+      calculateBlurPosition: function() {
+        var bodyBackgroundSize = $('body').css('background-size');
+        var sizeHeight = (window.innerHeight)/($('.content').outerHeight()) * parseInt(bodyBackgroundSize);
+        $('.blur').css('background-size', bodyBackgroundSize + ' ' + sizeHeight + '%');
       },
 
       loadPlays: function() {
