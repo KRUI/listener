@@ -38,11 +38,13 @@ define(['backbone', 'underscore', 'text!templates/view.html'], function(Backbone
               that.handleInactiveDJ();
               return;
             }
-
+            
             var dj = results.user.firstname + " " + results.user.lastname,
               artist = results.song.artist, 
               track = results.song.name;
 
+            that.$('h1.current.dj, .glyphicon-headphones')
+              .show();
             that.$('h1.current.dj')
               .text(dj);
             that.$('h2')
