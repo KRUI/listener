@@ -101,8 +101,8 @@ h1, h2, h3, h4, h5, h6, p {
 	}
 
 	.recentlyPlayed {
-		position: relative;
-		top: -100%;
+		position: absolute;
+		top: 30px;
 		padding: 30px;
 	}
 
