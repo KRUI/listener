@@ -1,4 +1,4 @@
-define(['backbone', 'underscore', 'text!templates/view.html', 'helpers/blur.js'], function(Backbone, _, Template, Blur) {
+define(['backbone', 'underscore', 'text!templates/view.html'], function(Backbone, _, Template) {
 
     var View = Backbone.View.extend({
 
@@ -60,10 +60,6 @@ define(['backbone', 'underscore', 'text!templates/view.html', 'helpers/blur.js']
           .hide();
         this.$('h2.current.song')
           .text("Iowa City's Sound Alternative");
-        this.$('.recentlyPlayed')
-          .css('top', '-100px');
-        this.$('.blurMask, .blurMask .blur')
-          .css('height', '100px');
         this.setJapanBackground();
       },
 
