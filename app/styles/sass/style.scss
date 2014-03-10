@@ -64,15 +64,45 @@ h1, h2, h3, h4, h5, h6, p {
 	color: #ffffff;
 }
 
+
+.content .blurMask {
+
+}
+
+.content .blurMask .blur {
+}
+
 .content {
-	background-color: rgba(0,0,0,0.3);
-	-webkit-box-shadow: inset 0 0 100px rgba(0,0,0,0.5), 0 0 30px rgba(255,255,255,0.2);
-	-moz-box-shadow: inset 0 0 100px rgba(0,0,0,0.5), 0 0 30px rgba(255,255,255,0.2);
-	box-shadow: inset 0 0 100px rgba(0,0,0,0.5), 0 0 30px rgba(255,255,255,0.2);
-    border-radius: 5px;
+
 	margin: 30px;
-	padding: 30px;
 	display: inline-block;
+
+	.blurMask {
+		width: 100%;
+		height: 200px;
+		background-color: rgba(255,255,255,0.8);
+    	border-radius: 5px;
+    }
+
+    .blurMask .blur {
+		width: 100%;
+		height: 200px;
+	    background-size: cover;
+	    background-repeat: no-repeat;
+		display: block;
+		-webkit-filter: blur(20px);
+	    -moz-filter: blur(15px);
+	    -o-filter: blur(15px);
+	    -ms-filter: blur(15px);
+	    filter: blur(15px);
+	    opacity: 0.95;
+	}
+
+	.recentlyPlayed {
+		padding: 30px;
+		position: relative;
+		top: -200px;
+	}
 
 	h1 {
 		display: inline-block;

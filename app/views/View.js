@@ -7,7 +7,7 @@ define(['backbone', 'underscore', 'text!templates/view.html'], function(Backbone
       template: _.template(Template),
  
       render: function(data) {
-        this.$el.html(this.template(data));
+        this.$el.append(this.template(data));
         var runCount = 0, 
           maxRunCount = 1440, // Keeps refreshing for a max of 1 day 
           that = this;
@@ -49,6 +49,7 @@ define(['backbone', 'underscore', 'text!templates/view.html'], function(Backbone
               .text(dj);
             that.$('h2')
               .text(artist + " - " + track);
+
             that.loadArtistImage(artist);
           }
         });
@@ -59,6 +60,10 @@ define(['backbone', 'underscore', 'text!templates/view.html'], function(Backbone
           .hide();
         this.$('h2.current.song')
           .text("Iowa City's Sound Alternative");
+        this.$('.recentlyPlayed')
+          .css('top', '-100px');
+        this.$('.blurMask, .blurMask .blur')
+          .css('height', '100px');
         this.setJapanBackground();
       },
 
@@ -86,8 +91,8 @@ define(['backbone', 'underscore', 'text!templates/view.html'], function(Backbone
             var images = obj.response.images;
             if (images.length > 0) {
               var randomImage = images[Math.floor(Math.random() * images.length)];
-              $('body')
-                .css('background-image', 'url(' + randomImage["url"] + ')');
+              $('body, .blur')
+                .css('background-image', 'url(' + randomImage["url"] + ')'); 
             } else {
               that.setJapanBackground();
             }
@@ -97,7 +102,7 @@ define(['backbone', 'underscore', 'text!templates/view.html'], function(Backbone
 
       setJapanBackground: function() {
         var japan = "http://krui.fm/wordpress/wp-content/themes/krui/images/bg_japan.jpg";
-        $('body')
+        $('body, .blur')
           .css('background-image', 'url(' + japan + ')')
           .addClass('japan');
       },
