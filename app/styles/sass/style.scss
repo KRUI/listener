@@ -79,29 +79,31 @@ h1, h2, h3, h4, h5, h6, p {
 
 	.blurMask {
 		width: 100%;
-		height: 200px;
-		background-color: rgba(255,255,255,0.8);
+		height: 100%;
+		background-color: rgba(255,255,255,0.75);
     	border-radius: 5px;
     }
 
     .blurMask .blur {
 		width: 100%;
-		height: 200px;
-	    background-size: cover;
+		height: 100%;
+	    background-size: 350%;
 	    background-repeat: no-repeat;
 		display: block;
-		-webkit-filter: blur(20px);
+		-webkit-filter: blur(15px);
 	    -moz-filter: blur(15px);
 	    -o-filter: blur(15px);
 	    -ms-filter: blur(15px);
 	    filter: blur(15px);
-	    opacity: 0.95;
+	    opacity: 0.9;
+    	padding: 30px;
+	    overflow: hidden;
 	}
 
 	.recentlyPlayed {
-		padding: 30px;
 		position: relative;
-		top: -200px;
+		top: -100%;
+		padding: 30px;
 	}
 
 	h1 {
