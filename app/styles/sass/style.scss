@@ -100,8 +100,9 @@ h1.current.dj {
 	display: inline;
 	color: #fff;
 }
+
 .playControl {
-	text-shadow: 0 0 0.5em rgba(0,0,0,0.7);
+	text-shadow: 0 0 0.5em rgba(0,0,0,0.4);
 	position: fixed;
 	bottom: 30px;
 	left: 30px;
@@ -139,6 +140,7 @@ h1.current.dj {
 	0%{transform: rotate(0deg);}
 	100%{transform: rotate(720deg);}
 }
+
 .startStopLoading {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -150,12 +152,16 @@ h1.current.dj {
 	margin: auto;
 	border-width: 10px;
 	border-style: solid;
-	border-color: transparent #FFFFFF;
+	border-color: transparent #FFFFFF transparent #DDDDDD;
 	border-radius: 60px;
-	-webkit-animation: spin 1.5s ease infinite;
-	-moz-animation: spin 1.5s ease infinite;
-	animation: spin 1.5s ease infinite;
+	-webkit-animation: spin 1.4s ease infinite;
+	-moz-animation: spin 1.4s ease infinite;
+	animation: spin 1.4s ease infinite;
 }
+
+/* ------------- */
+/* Media queries */
+/* ------------- */
 
 @media (max-width: 600px) {
 
