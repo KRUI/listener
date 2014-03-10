@@ -65,8 +65,10 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 .content {
-	background-color: rgba(0,0,0,0.5);
-	-webkit-box-shadow: inset 0 0 150px rgba(0,0,0,0.5);
+	background-color: rgba(0,0,0,0.3);
+	-webkit-box-shadow: inset 0 0 100px rgba(0,0,0,0.5), 0 0 30px rgba(255,255,255,0.2);
+	-moz-box-shadow: inset 0 0 100px rgba(0,0,0,0.5), 0 0 30px rgba(255,255,255,0.2);
+	box-shadow: inset 0 0 100px rgba(0,0,0,0.5), 0 0 30px rgba(255,255,255,0.2);
     border-radius: 5px;
 	margin: 30px;
 	padding: 30px;
@@ -98,7 +100,7 @@ h1.current.dj {
 	display: inline;
 	color: #fff;
 }
-.glyphicon-play, .glyphicon-pause {
+.playControl {
 	text-shadow: 0 0 0.5em rgba(0,0,0,0.7);
 	position: fixed;
 	bottom: 30px;
@@ -120,9 +122,47 @@ h1.current.dj {
 	vertical-align: middle;
 }
 
+/* --------------------- */
+/* CSS-only spin control */
+/* --------------------- */
+
+
+@-webkit-keyframes spin {
+	0%{-webkit-transform: rotate(0deg);}
+	100%{-webkit-transform: rotate(720deg);}
+}
+@-moz-keyframes spin {
+	0%{-moz-transform: rotate(0deg);}
+	100%{-moz-transform: rotate(720deg);}
+}
+@keyframes spin {
+	0%{transform: rotate(0deg);}
+	100%{transform: rotate(720deg);}
+}
+.startStopLoading {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+	display: block;
+	width: 120px;
+	height: 120px;
+	margin: auto;
+	border-width: 10px;
+	border-style: solid;
+	border-color: transparent #FFFFFF;
+	border-radius: 60px;
+	-webkit-animation: spin 1.5s ease infinite;
+	-moz-animation: spin 1.5s ease infinite;
+	animation: spin 1.5s ease infinite;
+}
+
 @media (max-width: 600px) {
 
-	body.japan {
-		background-size: 250%;
+	body {
+		background-size: 170%;
+		&.japan {
+			background-size: 250%;
+		}
 	}
 }
