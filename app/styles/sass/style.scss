@@ -52,10 +52,6 @@ table {
 
 body {
 	background-size: 100%;
-
-	&.japan {
-		background-size: 150%;
-	}
 }
 
 h1, h2, h3, h4, h5, h6, p {
@@ -83,51 +79,67 @@ h1, h2, h3, h4, h5, h6, p {
 		height: 100%;
 		background-color: rgba(255,255,255,0.9);
     	overflow: hidden;
+
+    	.blur {
+			width: 100%;
+			height: 100%;
+		    background-size: 100% 1000%;
+		    background-position: left 0 top 0;
+		    background-repeat: no-repeat;
+			display: block;
+			-webkit-filter: blur(15px);
+		    -moz-filter: blur(15px);
+		    -o-filter: blur(15px);
+		    -ms-filter: blur(15px);
+		    filter: blur(15px);
+		    opacity: 0.9;
+			padding: 20px;
+
+			h1, h2 {
+				color: #FFFFFF;
+			}
+		}
     }
 
-    .blurMask .blur {
-		width: 100%;
-		height: 100%;
-	    background-size: 100% 1000%;
-	    background-position: left 0 top 0;
-	    background-repeat: no-repeat;
-		display: block;
-		-webkit-filter: blur(15px);
-	    -moz-filter: blur(15px);
-	    -o-filter: blur(15px);
-	    -ms-filter: blur(15px);
-	    filter: blur(15px);
-	    opacity: 0.9;
-    	padding: 20px;
+	h1 {
+		font-weight: medium;
+		font-size: 32px;
+		text-shadow: 0 0 10px rgba(0,0,0,0.5);
+	}
+
+	h2 {
+		padding-top: 10px;
+		font-weight: 100;
+		font-size: 28px;
 	}
 
 	.recentlyPlayed {
 		position: absolute;
 		top: 0px;
 		padding: 20px;
+
+		h1 {
+			color: #FA1810;
+		}
+
+		h2 {
+			color: #000000;
+		}
 	}
 
 	h1 {
 		display: inline-block;
 		margin: 0;
+		border-bottom: 1px dotted #FF3333;
+
+		&.glyphicon-headphones {
+			border: 0;
+			margin-right: 5px;
+		}
 	}
-
-	h2 {
-		font-size: 28px;
-		font-weight: 100;
-	}
 }
 
-h1.glyphicon-headphones {
-	color: #FF3333;
-	margin-right: 5px;
-	text-shadow: 0 0 10px rgba(0,0,0,0.5);
-}
-
-h1.current.dj { 
-	color: #FFFF00;
-	border-bottom: 1px dotted #ffff00;
-}
+h1
 
 .glyphicon {
 	display: inline;
@@ -190,6 +202,13 @@ h1.current.dj {
 	-webkit-animation: spin 1.4s ease infinite;
 	-moz-animation: spin 1.4s ease infinite;
 	animation: spin 1.4s ease infinite;
+
+	&.glyphicon-play, &.glyphicon-pause {
+		-webkit-animation: 0;
+		-moz-animation: 0;
+		animation: 0;
+		border: 0;
+	}
 }
 
 /* ------------- */
@@ -199,10 +218,8 @@ h1.current.dj {
 @media (max-width: 600px) {
 
 	body {
-		background-size: 170%;
-		&.japan {
-			background-size: 250%;
-		}
+		background-size: 250%;
+		background-position-x: 50%;
 	}
 }
 
